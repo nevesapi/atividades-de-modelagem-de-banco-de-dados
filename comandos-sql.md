@@ -48,3 +48,23 @@ ALTER TABLE nomeDaTabela
   -- aponta para a chave-primaria (id) de outra tabela (fabricantes)
   FOREIGN KEY (fabricante_id) REFERENCES fabricantes(id);
 ```
+
+### Exemplo de alterações estruturais em tabelas
+
+#### Adicionar coluna
+
+```sql
+ALTER TABLE produtos ADD quantidade INT NULL AFTER preco;
+```
+
+#### Renomear tabela
+
+```sql
+ALTER TABLE fabricantes RENAME TO fornecedores;
+```
+
+#### Renomear coluna
+
+```sql
+ALTER TABLE fabricantes CHANGE descricao detalhes TEXT(500) NULL;
+```
