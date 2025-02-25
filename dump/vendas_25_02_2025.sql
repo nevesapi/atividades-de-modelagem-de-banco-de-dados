@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/02/2025 às 13:14
+-- Tempo de geração: 25/02/2025 às 15:50
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -34,6 +34,20 @@ CREATE TABLE `fabricantes` (
   `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `fabricantes`
+--
+
+INSERT INTO `fabricantes` (`id`, `nome`) VALUES
+(1, 'Asus'),
+(2, 'Dell'),
+(3, 'Apple'),
+(4, 'LG'),
+(5, 'Samsung'),
+(6, 'Brastemp'),
+(7, 'Positivo'),
+(8, 'Microsoft');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +62,19 @@ CREATE TABLE `produtos` (
   `quantidade` int(11) DEFAULT NULL,
   `fabricante_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `nome`, `descricao`, `preco`, `quantidade`, `fabricante_id`) VALUES
+(1, 'Ultrabook', 'Equipamento de última geração, cheio de recursos', 4123.12, 8, 2),
+(2, 'Tablet Android', 'Tablet com android 14.0 128GB rom e 32GB ram.', 2123.12, 5, 5),
+(3, 'Geladeira', 'Refrigerador frost-free com acesso à internet', 5000.00, 12, 6),
+(4, 'Iphone 18 pro Max', 'Smartphone Apple cheio de frufru', 9666.26, 3, 3),
+(5, 'iPad Mini', 'iPad com tela retina display', 6666.26, 5, 3),
+(6, 'Xbox Series S', 'Velocidade e desempenho de última geração.', 1997.00, 5, 8),
+(7, 'Notebook Motion', 'Intel Dual Core 4GB de RAM, 128GB SSD e Tela 14,1 polegadas.', 1213.65, 8, 7);
 
 --
 -- Índices para tabelas despejadas
@@ -74,13 +101,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `fabricantes`
 --
 ALTER TABLE `fabricantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restrições para tabelas despejadas

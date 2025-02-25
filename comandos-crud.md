@@ -96,7 +96,7 @@ INSERT INTO produtos(nome, descricao, preco, quantidade, fabricante_id)
 VALUES(
   'Xbox Series S',
   'Velocidade e desempenho de última geração.',
-   1997.00,
+  1997.00,
   5,
   8 -- id do fabricante Microsoft / fk
 ),
