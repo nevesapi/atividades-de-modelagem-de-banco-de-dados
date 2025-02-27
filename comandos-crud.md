@@ -176,3 +176,88 @@ UPDATE produtos SET quantidade = 10 WHERE preco < 2000 AND NOT fabricante_id = 8
 DELETE FROM fabricantes WHERE id = 4;
 
 ```
+
+## SELECT: outras formas de uso
+
+### Classificação/Ordenação
+
+```sql
+SELECT nome, preco FROM produtos ORDER BY nome;
+SELECT nome, preco FROM produtos ORDER BY preco; -- ordem ascendente (é o padrão)
+SELECT nome, preco FROM produtos ORDER BY preco ASC; -- ordem ascendente
+SELECT nome, preco FROM produtos ORDER BY preco DESC; -- ordem decrescente
+
+SELECT nome, preco, quantidade FROM produtos WHERE fabricante_id = 5 ORDER BY quantidade;
+```
+
+### Operações e funções de agregação
+
+```sql
+SELECT SUM(preco) FROM produtos; -- Somando todos os valores da coluna com os preços
+SELECT SUM(preco) AS somaTotal FROM produtos;
+SELECT SUM(preco) AS "soma total" FROM produtos;
+SELECT FORMAT(SUM(preco), 2) AS "soma total" FROM produtos;
+SELECT REPLACE(FORMAT(SUM(preco), 2), ",", ".") AS "soma total" FROM produtos;
+
+-- Função de média: AVG (AVERAGE)
+SELECT AVG(preco) AS "Média dos precos" FROM produtos;
+SELECT ROUND(AVG(preco), 2) AS "Média dos precos" FROM produtos;
+
+-- Função de contagem: COUNT
+SELECT COUNT(id) AS "QTD de produtos" FROM produtos;
+
+--conta a quantidade de fabricantes ignorando as duplicidades
+SELECT COUNT(DISTINCT fabricante_id) AS "QTD de fabricantes" FROM produtos;
+
+-- Operações matemáticas
+SELECT nome, preco, quantidade, (preco * quantidade) as Total FROM produtos;
+
+SELECT produtos.nome, fabricante.nome
+FROM produtos JOIN fabricantes
+ON produtos.fabricante_id = fabricantes.id
+
+-- Segmentação/Agrupamento de resultados
+SELECT fabricante_id, SUM(preco) AS total FROM produtos
+GROUP BY fabricante_id;
+```
+
+---
+
+## Consultas (Queries) em duas ou mais tabelas relacionadas (JOIN/JUNÇÂO)
+
+### Exibir o nome do produto e o nome do fabricante do produto
+
+```sql
+-- SELECT nomeDaTabela1.nomeDaColuna, nomeDaTabela2.nomeDaColuna
+SELECT produtos.nome AS Produto, fabricantes.nome AS Fabricante
+
+-- JOIN permite JUNTAR as tabelas no momento do SELECT
+FROM produtos JOIN fabricantes
+
+-- ON tabela1.chave_estrangeira = chave_primária
+ON produtos.fabricante_id = fabricantes.id
+```
+
+### Nome do produto, preço do produto, nome do fabricante ordenados pelo nome do produto e pelo preço
+
+```sql
+SELECT produtos.nome AS Produto, produtos.preco AS Preço, fabricantes.nome AS Fabricante
+FROM produtos JOIN fabricantes
+ON produtos.fabricante_id = fabricantes.id
+ORDER BY Produto ASC, Preço DESC;
+
+```
+
+### Fabricante, soma dos preços, Quantidade de produtos POR Fabricante
+
+```sql
+SELECT
+  fabricantes.nome AS Fabricante,
+  SUM(produtos.preco) AS Total,
+  COUNT(produtos.fabricante_id) AS "QTD de produtos"
+FROM produtos RIGHT JOIN fabricantes
+ON produtos.fabricante_id = fabricantes.id
+GROUP BY Fabricante
+ORDER BY Total;
+
+```
