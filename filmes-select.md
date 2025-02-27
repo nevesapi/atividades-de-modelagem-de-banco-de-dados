@@ -25,8 +25,9 @@ SELECT
   detalhes.sinopse AS sinopse,
   detalhes.duracao AS Duração,
   generos.nome AS Genero
-FROM detalhes JOIN filmes JOIN generos
-ON detalhes.filme_id = filmes.id,
-filmes.generos_id = generos.id
+FROM detalhes JOIN filmes
+ON detalhes.filme_id = filmes.id
+JOIN generos
+ON filmes.generos_id = generos.id
 ORDER BY Duração DESC;
 ```
