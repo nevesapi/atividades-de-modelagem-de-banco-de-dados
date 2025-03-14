@@ -90,6 +90,7 @@ SELECT * FROM `produtos`;
 
 ## Exercicio 3
 
+```sql
 INSERT INTO fabricantes(nome) VALUES('Positivo'), ('Microsoft');
 
 INSERT INTO produtos(nome, descricao, preco, quantidade, fabricante_id)
@@ -107,6 +108,7 @@ VALUES(
 8,
 7 -- id do fabricante Positivo / fk
 );
+```
 
 ```sql
 
